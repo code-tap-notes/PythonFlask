@@ -1,0 +1,21 @@
+Cài đật anaconda https://www.anaconda.com/download-success
+cài đặt Python https://www.python.org/downloads/release/python-3121/ tải xuống
+Khi cài đặt, nhớ bấm check vào ô add path python
+Sau khi cài thành công, vào Terminel thử lệnh $ python -V hay py -V => Python 3.11.5
+lỡ đi lạc khi bấm nhầm thì exit()
+file python co phan mo rong .py 
+muon chay file code python ghi lenh $ python name.py
+Sau khi cai thanh cong, mo cua so search cua window se thay co anaconda prompt va anaconda navigateur
+Mở anaconda prompt ra thi thay có chữ (base) ví dụ (base) C:\Users\Administrator>
+Tao moi truong lam viec cho python bang lenh (base) C:\Users\Administrator>conda create --name pythonFlask python=3.11.5
+=> môi ttruwowfng làm việc với python có tên pythonFlask dduoc tạo ra
+Kích hoạt môi trường bằng lệnh $ conda activate pythonFlask => ket qua (pythonFlask) C:\Users\Administrator>
+Và dóng kích hoạt bằng lệnh  $ conda deactivate
+Cai Flask  theo lenh tu trang nay https://pypi.org/project/Flask/
+(pythonFlask) C:\Users\Administrator> pip install Flask
+co the chay lenh  python truc tiep c:/users/adminitration/ python enter, vaof pajm vi code, muon thoat ra thi exit()
+Vào anaconda navigateur
+Mở visual code, chọn thư mục chương trình
+tạo file app.py, viet mot doan code ngắn
+run
+ok
