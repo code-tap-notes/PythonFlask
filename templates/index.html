@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1 style="color: blue;"> Hello project Python Flask  by  {{name}}</h1>
+    {%for x in range(10) %}
+    {% if x %3 == 0%}
+    <h3> {{x}}</h3>
+    {%endif%}
+    {%endfor%}
+</body>
+</html>
