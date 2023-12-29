@@ -1,0 +1,9 @@
+Khi su dung session, import thu vien session
+Đặt session  session["user"] = user_name
+Bỏ sesion session.pop("user",None)
+Khi đặt sesion , phải ghi dòng khóa bí mật ở đầu app: app.config["SECRET_KEY"]= "MyKey"
+Sesion có thể lưu trong flask 31 ngày, muốn đạt lại thời gian cho sesion thì dùng timedelta
+from datetime import timedelta 
+và khai báo ở đầu app
+app.permanent_session_lifetime = timedelta(minutes=1) (thời gian có thể đạt tùy ý)
+và ở trang login, đặt session.permanent = True
