@@ -9,4 +9,12 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
+<div>
+    <form action="#" method="POST">
+        <label for="">Entrez Email</label><br>
+        <input type="text" name="email" value="{{email if email}}"><br>
+        <button type="submit"> Save</button>
+    </form>
+         
+</div>
  {% endblock %}
