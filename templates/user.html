@@ -10,10 +10,11 @@
     {% endif %}
 {% endwith %}
 <div>
-    <form action="#" method="POST">
-        <label for="">Entrez Email</label><br>
-        <input type="text" name="email" value="{{email if email}}"><br>
-        <button type="submit"> Save</button>
+    
+    <form action="#" method="post">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Enter email..." value="{{email if email}}"></input>
+        <button style="background-color: slateblue; color: white;" type="submit">Submit</button>
     </form>
          
 </div>

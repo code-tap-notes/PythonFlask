@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %} User Page {% endblock %}
+{% block content %}
+<h2> List of user </h2>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for m in messages %}
+            <p> {{m}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div>
+    
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+             <!-- for x in {{users}} % -->
+            
+          <tr>
+            <th scope="row">
+                <!-- {{x.id}}-->
+                </th> 
+            <td>
+                <!-- {{x.username}} -->
+            </td>
+            <td>
+                <!-- {{x.email}} -->
+            </td>
+            <td> <button style="background-color: slateblue; color: white;" type="submit">Delete</button></td>
+          </tr>
+          <!-- {% endfor %} -->
+        </tbody>
+      </table>
+         
+</div>
+ {% endblock %}
