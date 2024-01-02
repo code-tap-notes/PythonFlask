@@ -1,0 +1,4 @@
+ from watchdog.events import EVENT_TYPE_OPENED
+ImportError: cannot import name 'EVENT_TYPE_OPENED' from 'watchdog.events' (C:\ProgramData\anaconda3\Lib\site-packages\watchdog\events.py)
+
+Fix: pip install --upgrade watchdog
