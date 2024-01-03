@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'styles/style.css')}}">
+    <script type="text/javascript" scr="{{url_for('static',filename = 'index.js')}}"></script>
+</head>
+<body>
+  <div>
+  <img src="{{url_for('static', filename = 'images/Python.bmp')}}">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">PythonFlask</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home">Home</a></li>
+            <li><a href="/calculler">Calculation blueprint</a></li>
+            <li><a href="/auth/login">Login</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+            <li><a href="/auth/sign-up">List User</a></li>
+            <li><a href="/list">List User</a></li>
+          </ul>
+        </div>
+    </nav>
+ {%with message = get_flashed_messages(with_categories=true)%}   
+ {% if messages %}
+ {% for category,message in messages %}  
+ {% if category == 'error' %}
+<div class="alert alert-danger alter-dismissable fade show" role="alert">
+     {{message}}
+    <button type="button" class="close" data-dismiss="alert" >
+     <span aria-hidden="true"> &times;</span>
+    </button>
+</div>
+{% else%}
+<div class="alert alert-success alter-dismissable fade show" role="alert">
+    {{message}}
+   <button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true"> &times;</span>
+   </button>
+</div>
+ {% endif %}
+{% endfor %}
+{% endif %} 
+{% endwith%}
+{% block content %}
+{% endblock %}
+</div>
+</div>
+</body>
+</html>

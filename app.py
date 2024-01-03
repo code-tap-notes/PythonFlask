@@ -5,10 +5,11 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from os import path
 from blueprints.calculator.calculator import calculator_bp
+from webmain import create_app
 #from Blueprints.user.user import user_bp
 # trong file user lay ham user_bp
 
-app = Flask(__name__)
+app = create_app()
 app.config["SECRET_KEY"]= "MyKey"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///user.sqlite"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
