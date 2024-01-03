@@ -4,31 +4,12 @@ from flask.helpers import flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from os import path
-from blueprints.calculator.calculator import calculator_bp
-#from Blueprints.user.user import user_bp
-# trong file user lay ham user_bp
+from flask.blueprints import Blueprint
 
-app = Flask(__name__)
-app.config["SECRET_KEY"]= "MyKey"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///user.sqlite"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-app.permanent_session_lifetime = timedelta(minutes=1)
-app.register_blueprint(calculator_bp,url_prefix="/calculler")
-#app.register_blueprint(user_bp, url_prefix="/user")
-#user la ham user
-
-
-@app.route('/')
-def home():
-    return render_template('index.html', name="Vien")
-
-@app.route('/home')
-def homePage():
-    return render_template("home.html") 
+user_bp = Blueprint("user", __name__)
 class Base(DeclarativeBase):
   pass
-db = SQLAlchemy(app, model_class=Base)
+db = SQLAlchemy(user_bp, model_class=Base)
 
 class User(db.Model):
     id: Mapped[int] = mapped_column(db.Integer, primary_key=True)
@@ -38,10 +19,10 @@ class User(db.Model):
     def __init__(self, username, email):
         self.username = username
         self.email = email
-with app.app_context():
+with user_bp.app_context():
     db.create_all()
 
-@app.route('/list')
+@user_bp.route('/list')
 def list():
     users = User.query.order_by(User.username).all()
     return render_template("list.html",users = users) 
@@ -50,15 +31,15 @@ def list():
  #   all_users = User.query.all()
    # result = products_shema.dump(all_products)
     #return jsonify(result)
-@app.route('/delete', methods=["POST","GET"])
+@user_bp.route('/delete', methods=["POST","GET"])
 def delete():
     user_name = request.form["name"]
     User.query.filter_by(username = user_name).delete()
     db.session.commit()
     flash("user deleted")
-    return redirect(url_for("list")) 
+    return redirect(url_for("user.list")) 
 
-@app.route('/login', methods=["POST","GET"])
+@user_bp.route('/login', methods=["POST","GET"])
 def login():
     if request.method == "POST":
        
@@ -74,20 +55,20 @@ def login():
                 db.session.add(user)
                 db.session.commit()
             flash("Login successfully ! add to database","info")
-        return redirect(url_for("user",user=user_name)) 
+        return redirect(url_for("user.user",user=user_name)) 
     if "user" in session:
         name = session["user"]
         flash("You have been already Logged in !","info")
-        return redirect(url_for("user",user=name))
+        return redirect(url_for("user.user",user=name))
     return render_template("login.html") 
 
 
-@app.route('/admin')
+@user_bp.route('/admin')
 def admin():
     return f"<h2> Hello Admin of web ! </h2>"
 
 
-@app.route('/user', methods=["POST","GET"])
+@user_bp.route('/user', methods=["POST","GET"])
 def user():
     email = None
     if "user" in session:
@@ -104,20 +85,10 @@ def user():
         return render_template("user.html",user=name, email = email) 
     else:
         flash("You haven't been Logged in !","info")
-        return redirect(url_for("login"))
+        return redirect(url_for("user.login"))
     
-@app.route('/logout')
+@user_bp.route('/logout')
 def log_out():
     session.pop("user",None)
     flash("You have been already Logged out !","info")
-    return redirect(url_for("login"))
-
-if __name__=="__main__":
-    #if not path.exists("user.db"):
-     #   db.create_all(app=app)
-      #  print ("Created database")
-    #with app.app_context():
-     #   db.create_all()
-
-
-    app.run(debug=True)
+    return redirect(url_for("user.login"))
