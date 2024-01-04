@@ -2,13 +2,21 @@
 {% block title %} Home Page {% endblock %}
 {% block content %}
 
-<h2 class="home-name"> This is Home page</h2>
-
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for m in messages %}
-            <p> {{m}}</p>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
+<h2 class="home-name"> Notes page</h2>
+<ul class="list-group list-group flush" id="notes">
+    {% for note in user.notes %}  
+    <li class="list-group item">{{note.data}}
+        <button type="button" class="close" onClick="">
+            <span aria-hidden="true"> &times;</span>
+        </button>
+    </li>
+    {% endfor %}  
+</ul>
+<form method="POST">
+    <textarea class="form-control" name="note" id="note" placeholder="Writing note"></textarea>
+    <br/>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add note</button>
+    </div>
+</form>
  {% endblock %}

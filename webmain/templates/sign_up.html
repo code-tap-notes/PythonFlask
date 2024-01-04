@@ -25,11 +25,4 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for m in messages %}
-            <p> {{m}}</p>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
  {% endblock %}
