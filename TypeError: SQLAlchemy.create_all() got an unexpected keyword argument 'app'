@@ -1,0 +1,6 @@
+db.create_all(app=app)
+TypeError: SQLAlchemy.create_all() got an unexpected keyword argument 'app'
+=>
+with app.app_context():
+    db.create_all()
+=>gone
