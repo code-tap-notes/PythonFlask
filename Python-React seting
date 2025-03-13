@@ -1,0 +1,6 @@
+npx create-react-app client
+python -m venv venv 
+venv\Scripts\activate
+pip3 install Flask
+pip show flask
+python server.py
